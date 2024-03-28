@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+  <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vina+Sans&display=swap" rel="stylesheet">
+
+<style>
+	input {
+		font-size: 22px;
+	}
+body {
+  font-family: 'Architects Daughter', cursive;
+  margin: 0 auto;
+  max-width: 600px;
+  background: #B8C8A3;
+}
+div {
+  height: 300px;
+  background-size: cover;
+  position: relative;
+  margin: 40px 1 0 0;
+  border-radius: 12px;
+}
+h1 {
+  font-family: 'Great Vibes', cursive;
+  text-align: center;
+  font-size: 75px;
+  color: #76A598;
+  margin: 60px 2, 5, 0;
+}
+h2 {
+  font-family: 'Vina Sans', sans-serif;
+  text-align: center;
+  color: #768FA5;
+  margin: 0px 0 70px 0;
+}
+p {
+  color: rgba(275,15,145,1);
+  background: rgba(100, 50, 20, 0.8);
+
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+}
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+.first{
+  background-image: url(https://images.food52.com/7f0yncraWeYUJG_lLbH2ie1xd6g=/2016x1344/d815e816-4664-472e-990b-d880be41499f--chicken-biryani-recipe.jpg);
+}
+.second{
+  background-image: url(https://media.istockphoto.com/id/480937181/photo/rotisserie-chicken.jpg?s=612x612&w=0&k=20&c=CDyUlZ1YTu6b0d2tmSeZ9e6xWeKL_wgDq91yzMYmcSg=);
+}
+.dessert{
+  background-image: url(https://www.thedailymeal.com/img/gallery/what-a-beginner-needs-to-know-about-ordering-shawarma/intro-1681948540.jpg);
+}
+.price {
+  float: right;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+<h1>Muaaz's Cafe</h1>
+<h2>A New York City Buffet</h2>
+<div class="first">
+  <input type="number" min="0" style="width: 50px" class="quantities">
+  <p>Birayani <span class="price">$20</span><br />
+  <small>Biryani is a mixed rice dish originating among the Muslims of South Asia. It is made with rice, some type of meat and spices. To cater to vegetarians, in some cases it is prepared without any meat, substituting vegetables for the meat. Sometimes eggs and/or potatoes, are added.. </small></p>
+</div>
+
+<div class="second">
+  <input type="number" min="0" style="width: 50px" class="quantities">
+  <p>Chicken full grill <span class="price">$15</span><br />
+  <small>whole grilled chicken is first brined, then rubbed with a paste of lemon, rosemary, and garlic, and finally grilled. It's an easy dinner for backyard barbecues. And it's gonna ruin ordinary roast chicken for you forever.</small></p>
+</div>
+  
+<div class="dessert">
+  <input type="number" min="0" style="width: 50px" class="quantities">
+  <p>Shawarma<span class="price">$11</span><br />
+  <small>Shawarma is a Middle Eastern dish that originated in the Levant region of the Arab world during the Ottoman Empire, consisting of meat cut into thin slices, stacked in an inverted cone, and roasted on a slowly turning vertical rotisserie or spit..</small></p>
+</div>
+
+
+<br><br>
+   <input id="Name" type="name" placeholder="User name">
+  <input id="Email" type="email" placeholder="Your email">
+  <input id="submit" type="submit">
+<br><br> 
+
+
+
+<script>
+  $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+  });
+</script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+  
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBWv632sYISgjqluBDQKo1rXSIEPpM3_6Q",
+    authDomain: "zen-3-60df0.firebaseapp.com",
+    projectId: "zen-3-60df0",
+    storageBucket: "zen-3-60df0.appspot.com",
+    messagingSenderId: "68079484289",
+    appId: "1:68079484289:web:aabd4c362fd5ef5e69bc80"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app); 
+  const Name = document.querySelector("#Name") 
+  const Email = document.querySelector("#Email")
+  document.querySelector('#submit').addEventListener('click', Submit)
+  const quantities = document.querySelectorAll(".quantities") 
+  const prices = document.querySelectorAll(".price") 
+  
+  const itemsList = ["Birayani", "Chicken full grill", "Shawarma"]
+  
+  
+  function Submit() {
+  	  const timestamp = buildTimestamp()
+	  let total = 0 
+	  let cart = { }
+	  for  (let i=0; i<quantities.length; i=i+1) {
+	  	if (quantities[i].value != "0" && quantities[i].value != "") {	
+			  let price = prices[i].innerHTML.replace('$', '')
+			  total = total + quantities[i].value * price 
+			
+	  		cart[itemsList[i]] = parseInt(quantities[i].value) 
+	  	}
+	  	quantities[i].value = ""
+	  }
+	  
+  	  set(ref(db, timestamp), {
+  		  Name: Name.value,
+  	      email: Email.value,
+		  cart: cart,
+		  totalPrice: total,
+		  paid: "not yet",
+		  
+  	  });
+
+  	  Name.value = ""
+  	  Email.value = ""
+  	}
+	function buildTimestamp() {
+	  const now = new Date();
+	  let timestamp = now.getFullYear().toString() + "/";
+	  //const month = now.toLocaleString('default', { month: 'long' });
+
+	  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+	  month = month.toString()
+	  month = addLeadingZero(month)
+	  timestamp += month + "/"; 
+
+	  let date = now.getDate().toString()
+	  date = addLeadingZero(date)
+	  timestamp += date + "/";
+
+	  let hours = now.getHours().toString()
+	  hours = addLeadingZero(hours)
+	  timestamp += hours + ":";
+
+	  let minutes = now.getMinutes().toString()
+	  minutes = addLeadingZero(minutes)
+	  timestamp += minutes + ":";
+
+	  let seconds = now.getSeconds().toString()
+	  seconds = addLeadingZero(seconds)
+	  timestamp += seconds;
+  
+	  return timestamp
+	}
+	
+	function addLeadingZero(units) {
+		if (units.length < 2) {
+			units = "0" + units
+		}
+		return units
+	}
+  
+</script>
+</body>
